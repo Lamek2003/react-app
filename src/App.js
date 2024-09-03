@@ -1,32 +1,29 @@
-// import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Button from './Button';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar.js';
+import Dasbord from './pages/Dashboard.js';
+import Users from './pages/User.js';
+import About from './pages/About.js';
 
 function App() {
-  const employees = [
-    { name: "AAA", email: "aaa@gmail.com", age: 19 },
-    { name: "BBB", email: "bbb@gmail.com", age: 20 },
-    { name: "CCC", email: "ccc@gmail.com", age: 21 }
-  ];
-
-  console.log(employees);
+  
 
   return (
     <>
-      <div className="App">
-        <ul>
-          {employees.map((em, index) => (
-            <li key={index}>
-              ชื่อพนักงาน: {em.name}  | อีเมล์: {em.email}  | อายุ : {em.age}
-            </li>
-          ))}
-        </ul>
-        
-        <h1>hello Lamek</h1>
-        <Button text="ok" />
-        <Button text="Cancel" />
+      <BrowserRouter>
+      <div className="flex">
+        <Sidebar/>
+        <div className="flex-1">
+          <Header/>
+          <Routes>
+            <Route path='/' element={<Dasbord />}/>
+            <Route path='/user' element={<Users />} />
+            <Route path='/about' element={<About />} />
+          </Routes>
+        </div>
       </div>
-      <h1 className="text01">hello Lamek</h1>
+      </BrowserRouter>
     </>
   );
 }
